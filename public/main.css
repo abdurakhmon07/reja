@@ -38,6 +38,15 @@
     align-items: center;
 }
 
+#clean-all {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 .main_frame .left_1 {
     position: relative;
     width: 228px;
