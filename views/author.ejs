@@ -2,87 +2,137 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= user.name %> — Portfolio</title>
 
-   <link rel="stylesheet" href="/main.css" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     />
-
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
-    <title>Portfolio</title>
+    <link rel="stylesheet" href="/main.css" />
 </head>
 
-<body>
-    <div class="frame">
-        <div class="main_frame">
-            <div class="left_frame">
-                <div class="left_1">
-                        <div class="left_1-1">
-                            <img
-                                src="images/profile.png"
-                                width="156px"
-                                height="142px"
-                                alt=""
-                            />
-                        </div>
-                        <div class="left_1-2"><%=user.name%></div>
-                        <div class="left_1-3"><%=user.profession%></div>
-                        <div class="left-icons">
-                        <a class="link_href" href="">
-                            <div class="icon">
-                                <img src="icon/facebook.svg" class="icon-1">
-                            </div>
-                        </a>
+<body class="author-page">
+    <div class="layout">
+        <!-- ===== Chap panel: profil ===== -->
+        <aside class="sidebar">
+            <section class="profile">
+                <img
+                    class="profile-photo"
+                    src="/author/images/profile.png"
+                    width="156"
+                    height="142"
+                    alt="<%= user.name %>"
+                />
+                <h1 class="profile-name"><%= user.name %></h1>
+                <p class="profile-role"><%= user.profession %></p>
 
-                        <a class="link_href" href="">
-                            <div class="icon">
-                                <img src="icon/instagram.svg" class="icon-1">
-                            </div>
-                        </a>
+                <nav class="socials" aria-label="Ijtimoiy tarmoqlar">
+                    <% ["facebook", "instagram", "twitter", "youtube", "linkeding", "dribbble"].forEach(function (name) { %>
+                    <a class="social" href="#" title="<%= name === 'linkeding' ? 'linkedin' : name %>">
+                        <img src="/author/icon/<%= name %>.svg" alt="<%= name === 'linkeding' ? 'LinkedIn' : name %>" width="25" height="23" />
+                    </a>
+                    <% }) %>
+                </nav>
+            </section>
 
-                        <a class="link_href" href="">
-                            <div class="icon">
-                                <img src="icon/twitter.svg" class="icon-1">
-                            </div>
-                        </a>
+            <hr class="divider" />
 
-                        <a class="link_href" href="">
-                            <div class="icon">
-                                <img src="icon/youtube.svg" class="icon-1">
-                            </div>
-                        </a>
+            <section class="info-block">
+                <dl class="facts">
+                    <div><dt>Age</dt><dd><%= user.age %></dd></div>
+                    <div><dt>Residence</dt><dd><%= user.residence %></dd></div>
+                    <div><dt>Address</dt><dd><%= user.adress %></dd></div>
+                    <div><dt>City</dt><dd><%= user.city %></dd></div>
+                </dl>
+            </section>
 
-                        <a class="link_href" href="">
-                            <div class="icon">
-                                <img src="icon/linkeding.svg" class="icon-1">
-                            </div>
-                        </a>
+            <hr class="divider" />
 
-                        <a class="link_href" href="">
-                            <div class="icon">
-                                <img src="icon/dribble.svg" class="icon-1">
-                            </div>
-                        </a>
-                    </div>
+            <section class="info-block">
+                <h2 class="block-title">Languages</h2>
+                <ul class="tags">
+                    <% user.languages.forEach(function (lang) { %>
+                    <li class="tag"><%= lang %></li>
+                    <% }) %>
+                </ul>
+            </section>
+
+            <hr class="divider" />
+
+            <section class="info-block">
+                <h2 class="block-title">Skills</h2>
+                <ul class="tags">
+                    <% user.skills.forEach(function (skill) { %>
+                    <li class="tag tag-accent"><%= skill %></li>
+                    <% }) %>
+                </ul>
+            </section>
+
+            <hr class="divider" />
+
+            <section class="info-block">
+                <h2 class="block-title">Extra skills</h2>
+                <ul class="checklist">
+                    <% user.extra_skills.forEach(function (skill) { %>
+                    <li><%= skill %></li>
+                    <% }) %>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- ===== Asosiy qism ===== -->
+        <main class="content">
+            <section class="hero">
+                <p class="hero-kicker"><%= user.work_place %></p>
+                <h2 class="hero-title">
+                    I'm <span class="highlight"><%= user.name %></span>,
+                    <%= user.profession %>
+                </h2>
+                <p class="hero-text"><%= user.about_me %></p>
+            </section>
+
+            <section class="panel">
+                <h2 class="section-title">What I do</h2>
+                <p class="section-text"><%= user.service_desc %></p>
+                <div class="topics">
+                    <% user.title.forEach(function (t) { %>
+                    <span class="topic"><%= t %></span>
+                    <% }) %>
                 </div>
-                <div class="marginer"></div>
-                <div class="left_2"></div>
-                <div class="marginer"></div>
-                <div class="left_3"></div>
-                <div class="marginer"></div>
-                <div class="left_4"></div>
-                <div class="marginer"></div>
-                <div class="left_5"></div>
-                <div class="marginer"></div>
-            </div>
-            <div class="midd_frame"></div>
-            <div class="right_frame"></div>
-        </div>
+            </section>
+
+            <section class="panel">
+                <h2 class="section-title">Questions</h2>
+                <ul class="faq">
+                    <% user.flower_desc.forEach(function (q) { %>
+                    <li><%= q %></li>
+                    <% }) %>
+                </ul>
+            </section>
+
+            <section class="panel">
+                <h2 class="section-title">Flowers</h2>
+                <div class="flower-grid">
+                    <% user.flower_name.forEach(function (flower, i) { %>
+                    <article class="flower-card">
+                        <div class="flower-thumb" aria-hidden="true">🌸</div>
+                        <h3 class="flower-name"><%= flower %></h3>
+                        <p class="flower-price"><%= user.flower_price[i] || "" %></p>
+                    </article>
+                    <% }) %>
+                </div>
+            </section>
+
+            <% user.famous_words.forEach(function (words, i) { %>
+            <blockquote class="quote">
+                <p>“<%= words %>”</p>
+                <footer>— <%= user.famous_name[i] || "" %></footer>
+            </blockquote>
+            <% }) %>
+        </main>
     </div>
 </body>
 </html>
